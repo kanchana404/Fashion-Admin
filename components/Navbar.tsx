@@ -29,8 +29,8 @@ const Navbar = () => {
       
       <SignedOut>
         <div className="lg:ml-auto mr-4 -mt-2 hidden lg:block">
-          <Link href={"/sign-up"}>
-            <Button className="w-32">SIGN UP</Button>
+          <Link href={"/sign-in"}>
+            <Button className="w-32">SIGN IN</Button>
           </Link>
         </div>
         <div className="ml-auto lg:hidden">
@@ -55,8 +55,8 @@ const Navbar = () => {
               <SheetHeader>
                
 
-                  <Link href={"/sign-up"}>
-                    <Button className="w-32">SIGN UP</Button>
+                  <Link href={"/sign-in"}>
+                    <Button className="w-32">SIGN IN</Button>
                   </Link>
                
               </SheetHeader>
