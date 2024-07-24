@@ -12,8 +12,14 @@ const Home = () => {
 
       <SignedIn>
         <Navbar />
-        <h1>Payment Data Table</h1>
+        <div className=" p-2 ml-10">
+          <h1 className="text-3xl font-bold "> Dashboard</h1>
+        </div>
+
+        <div className="p-5">
         <DataTableDemo />
+        </div>
+        
       </SignedIn>
     </div>
   );
