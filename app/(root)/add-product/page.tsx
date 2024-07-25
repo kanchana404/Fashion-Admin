@@ -6,24 +6,33 @@ import { Textarea } from "@/components/ui/textarea";
 import Image from "next/image";
 import React, { useRef, useState } from "react";
 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
 const AddProductPage: React.FC = () => {
   const [selectedImages, setSelectedImages] = useState<string[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [price, setPrice] = useState<string>("");
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (files) {
-      const fileArray = Array.from(files).map(file => {
+      const fileArray = Array.from(files).map((file) => {
         const reader = new FileReader();
         return new Promise<string>((resolve, reject) => {
           reader.onload = () => resolve(reader.result as string);
-          reader.onerror = error => reject(error);
+          reader.onerror = (error) => reject(error);
           reader.readAsDataURL(file);
         });
       });
 
-      Promise.all(fileArray).then(images => {
-        setSelectedImages(prevImages => [...prevImages, ...images]);
+      Promise.all(fileArray).then((images) => {
+        setSelectedImages((prevImages) => [...prevImages, ...images]);
       });
     }
   };
@@ -31,6 +40,14 @@ const AddProductPage: React.FC = () => {
   const triggerFileInput = () => {
     if (fileInputRef.current) {
       fileInputRef.current.click();
+    }
+  };
+
+  const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    const regex = /^\d*\.?\d*$/;
+    if (regex.test(value)) {
+      setPrice(value);
     }
   };
 
@@ -48,6 +65,9 @@ const AddProductPage: React.FC = () => {
                     className="w-full pl-10 pr-2 py-2 border rounded"
                     type="text"
                     placeholder="Price"
+                    value={price}
+                    onChange={handlePriceChange}
+                    pattern="^\d*\.?\d*$"
                   />
                   <div className="absolute inset-y-0 left-0 flex items-center pl-2">
                     <Image
@@ -62,6 +82,22 @@ const AddProductPage: React.FC = () => {
             </div>
             <div className="p-6">
               <Textarea rows={8} placeholder="Description" />
+            </div>
+            <div className="p-6 w-1/2">
+              <Select>
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Category" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="light">Light</SelectItem>
+                  <SelectItem value="dark">Dark</SelectItem>
+                  <SelectItem value="system">System</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div>
+              {/* taginput */}
             </div>
           </div>
           <div className="p-6 w-full lg:w-2/6 flex justify-center items-center">
@@ -82,7 +118,10 @@ const AddProductPage: React.FC = () => {
                   width={60}
                   height={60}
                 />
-                <Button className="mt-4 bg-yellow-400 w-32" onClick={triggerFileInput}>
+                <Button
+                  className="mt-4 bg-yellow-400 w-32"
+                  onClick={triggerFileInput}
+                >
                   Upload
                 </Button>
               </div>
