@@ -1,5 +1,6 @@
 "use client";
 import Navbar from "@/components/Navbar";
+import Stock from "@/components/Stock";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -83,22 +84,26 @@ const AddProductPage: React.FC = () => {
             <div className="p-6">
               <Textarea rows={8} placeholder="Description" />
             </div>
-            <div className="p-6 w-1/2">
-              <Select>
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Category" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="light">Light</SelectItem>
-                  <SelectItem value="dark">Dark</SelectItem>
-                  <SelectItem value="system">System</SelectItem>
-                </SelectContent>
-              </Select>
+            <div className="w-full flex p-6 space-x-36">
+              <div className=" w-1/2">
+                <Stock />
+              </div>
+
+              <div className="w-1/2 ">
+                <Select>
+                  <SelectTrigger className="w-[180px]">
+                    <SelectValue placeholder="Theme" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="light">Light</SelectItem>
+                    <SelectItem value="dark">Dark</SelectItem>
+                    <SelectItem value="system">System</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
 
-            <div>
-              {/* taginput */}
-            </div>
+            <div>{/* taginput */}</div>
           </div>
           <div className="p-6 w-full lg:w-2/6 flex justify-center items-center">
             <div className="border p-4 rounded-lg flex flex-col items-center h-auto">
