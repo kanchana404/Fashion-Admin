@@ -92,7 +92,7 @@ const AddProductPage: React.FC = () => {
               <div className="w-1/2 ">
                 <Select>
                   <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder="Theme" />
+                    <SelectValue placeholder="Category" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="light">Light</SelectItem>

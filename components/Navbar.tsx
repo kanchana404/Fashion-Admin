@@ -73,7 +73,7 @@ const Navbar = () => {
                     ))}
                   </ul>
 
-                  <Link href={"/sign-ip"}>
+                  <Link href={"/sign-in"}>
                     <Button className="w-32">SIGN IN</Button>
                   </Link>
                 </nav>
