@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
-
+import { NAV_LINKS } from "@/constants";
 import { Button } from "./ui/button";
 import {
   Sheet,
@@ -26,11 +26,19 @@ const Navbar = () => {
         />
       </Link>
 
-      
+      <div className="flex-1 hidden lg:flex justify-center ml-4">
+        <ul className="flex h-full text-black gap-12">
+          {NAV_LINKS.map((link) => (
+            <li key={link.key} className="hover:text-black">
+              <Link href={link.href}>{link.label}</Link>
+            </li>
+          ))}
+        </ul>
+      </div>
       <SignedOut>
         <div className="lg:ml-auto mr-4 -mt-2 hidden lg:block">
-          <Link href={"/sign-in"}>
-            <Button className="w-32">SIGN IN</Button>
+          <Link href={"/sign-up"}>
+            <Button className="w-32">SIGN UP</Button>
           </Link>
         </div>
         <div className="ml-auto lg:hidden">
@@ -53,12 +61,22 @@ const Navbar = () => {
             </SheetTrigger>
             <SheetContent>
               <SheetHeader>
-               
+                <nav className="mt-10">
+                  <ul>
+                    {NAV_LINKS.map((link) => (
+                      <li
+                        key={link.key}
+                        className="mb-5 text-gray-500 hover:text-black"
+                      >
+                        <Link href={link.href}>{link.label}</Link>
+                      </li>
+                    ))}
+                  </ul>
 
-                  <Link href={"/sign-in"}>
-                    <Button className="w-32">SIGN IN</Button>
+                  <Link href={"/sign-up"}>
+                    <Button className="w-32">SIGN UP</Button>
                   </Link>
-               
+                </nav>
               </SheetHeader>
             </SheetContent>
           </Sheet>
@@ -91,7 +109,19 @@ const Navbar = () => {
             </SheetTrigger>
             <SheetContent>
               <SheetHeader>
+                <nav className="mt-10">
+                  <ul>
+                    {NAV_LINKS.map((link) => (
+                      <li
+                        key={link.key}
+                        className="mb-5 text-gray-500 hover:text-black"
+                      >
+                        <Link href={link.href}>{link.label}</Link>
+                      </li>
+                    ))}
+                  </ul>
                 
+                </nav>
               </SheetHeader>
             </SheetContent>
           </Sheet>
