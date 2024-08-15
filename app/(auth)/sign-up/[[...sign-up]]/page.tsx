@@ -1,5 +1,11 @@
-import { SignUp } from "@clerk/nextjs";
+import React from 'react'
 
-export default function Page() {
-  return <SignUp />;
+const page = () => {
+  return (
+    <div>
+<h1 className='text-8xl'>Page is not avalable</h1>
+    </div>
+  )
 }
+
+export default page
