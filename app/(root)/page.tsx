@@ -11,16 +11,12 @@ export default function Home() {
   const [qty, setQty] = useState<number | "">(""); 
   const [description, setDescription] = useState("");
   const [size, setSize] = useState("M");
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [imageUrls, setImageUrls] = useState<string[]>([]); // Changed to an array of strings
 
   const handleUploadComplete = (res: { url: string }[]) => {
     if (res && res.length > 0) {
-      setImageUrl(res[0].url); // Capture the uploaded file URL
-      Swal.fire({
-        icon: 'success',
-        title: 'Upload Completed',
-        text: 'Your image has been successfully uploaded!',
-      });
+      const urls = res.map(file => file.url);
+      setImageUrls(prevUrls => [...prevUrls, ...urls]); // Append the new URLs to the array
     }
   };
 
@@ -33,11 +29,11 @@ export default function Home() {
   };
 
   const handleSubmit = async () => {
-    if (!productName || !price || !qty || !description || !imageUrl) {
+    if (!productName || !price || !qty || !description || imageUrls.length === 0) {
       Swal.fire({
         icon: 'warning',
         title: 'Incomplete Form',
-        text: 'Please fill in all fields and upload an image.',
+        text: 'Please fill in all fields and upload at least one image.',
       });
       return;
     }
@@ -48,7 +44,7 @@ export default function Home() {
       quantity: Number(qty),
       description,
       size,
-      imageUrl, // Use the captured imageUrl from the file upload
+      imageUrls, // Use the array of image URLs
     };
 
     try {
@@ -64,7 +60,7 @@ export default function Home() {
       setQty("");
       setDescription("");
       setSize("M");
-      setImageUrl(null);
+      setImageUrls([]);
     } catch (error) {
       console.error("Error creating product:", error);
       Swal.fire({
@@ -159,6 +155,15 @@ export default function Home() {
           onClientUploadComplete={handleUploadComplete}
           onUploadError={handleUploadError}
         />
+
+        <div className="mt-4">
+          <h3 className="text-gray-700 font-bold mb-2">Uploaded Images:</h3>
+          <div className="flex flex-wrap gap-4">
+            {imageUrls.map((url, index) => (
+              <img key={index} src={url} alt={`Uploaded ${index + 1}`} className="w-24 h-24 object-cover rounded" />
+            ))}
+          </div>
+        </div>
 
         <button
           onClick={handleSubmit}

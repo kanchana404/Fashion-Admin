@@ -7,7 +7,7 @@ const ProductSchema = new Schema({
   quantity: { type: Number, required: true },
   description: { type: String, required: true },
   size: { type: String, required: true },
-  imageUrl: { type: String, required: true },
+  imageUrls: [{ type: String, required: true }], // Changed to an array of strings
 }, {
   timestamps: true, // Adds createdAt and updatedAt fields
 });

@@ -1,4 +1,3 @@
-// app/api/products/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 
 import Product from '@/lib/database/models/product.model';
@@ -7,10 +6,10 @@ import { connectToDatabase } from '@/lib/database';
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { name, price, quantity, description, size, imageUrl } = body;
+    const { name, price, quantity, description, size, imageUrls } = body; // Updated to imageUrls
 
     // Validate that all required fields are provided
-    if (!name || !price || !quantity || !description || !size || !imageUrl) {
+    if (!name || !price || !quantity || !description || !size || !imageUrls || imageUrls.length === 0) {
       return NextResponse.json({ success: false, message: 'All fields are required' }, { status: 400 });
     }
 
@@ -24,7 +23,7 @@ export async function POST(req: NextRequest) {
       quantity,
       description,
       size,
-      imageUrl,
+      imageUrls, // Store the array of image URLs
     });
 
     // Save the product to the database
