@@ -65,3 +65,4 @@ export const calculateThreadEngagement = (upvotes: number, downvotes: number) =>
 export const sanitizeInput = (input: string) => {
   return input.replace(/<[^>]*>?/gm, '');
 }
+
