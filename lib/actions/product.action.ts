@@ -1,13 +1,13 @@
-// lib/actions/product.action.ts
-import axios from 'axios';
+import axios from "axios";
 
+// lib/actions/product.action.ts
 interface ProductData {
   name: string;
   price: number;
   quantity: number;
   description: string;
   size: string;
-  imageUrl: string;
+  imageUrls: string[]; // Update from imageUrl to imageUrls
 }
 
 export async function createProduct(product: ProductData) {
