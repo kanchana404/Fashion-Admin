@@ -74,7 +74,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-10 bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
-        <h1 className="text-2xl font-bold mb-6">Upload Product</h1>
+        <h1 className="text-2xl font-bold mb-6">Create a product</h1>
 
         <div className="mb-4">
           <label className="block text-gray-700 font-bold mb-2" htmlFor="productName">
