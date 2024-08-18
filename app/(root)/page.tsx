@@ -1,7 +1,7 @@
 "use client";
 
-import { UploadButton } from "@/utils/uploadthing";
 import { useState } from "react";
+import { UploadButton } from "@/utils/uploadthing"; // Adjust the import path to where UploadButton is defined
 import { createProduct } from '@/lib/actions/product.action';
 import Swal from 'sweetalert2';
 
@@ -11,12 +11,12 @@ export default function Home() {
   const [qty, setQty] = useState<number | "">(""); 
   const [description, setDescription] = useState("");
   const [size, setSize] = useState("M");
-  const [imageUrls, setImageUrls] = useState<string[]>([]); // Changed to an array of strings
+  const [imageUrls, setImageUrls] = useState<string[]>([]);
 
   const handleUploadComplete = (res: { url: string }[]) => {
     if (res && res.length > 0) {
       const urls = res.map(file => file.url);
-      setImageUrls(prevUrls => [...prevUrls, ...urls]); // Append the new URLs to the array
+      setImageUrls(urls);
     }
   };
 
@@ -38,22 +38,25 @@ export default function Home() {
       return;
     }
 
-    const newProduct = {
-      name: productName,
-      price: Number(price),
-      quantity: Number(qty),
-      description,
-      size,
-      imageUrls, // Use the array of image URLs
-    };
-
     try {
+      // After images are uploaded, proceed with creating the product
+      const newProduct = {
+        name: productName,
+        price: Number(price),
+        quantity: Number(qty),
+        description,
+        size,
+        imageUrls,
+      };
+
       await createProduct(newProduct);
+
       Swal.fire({
         icon: 'success',
         title: 'Product Created',
         text: 'Your product has been created successfully!',
       });
+
       // Reset the form after submission
       setProductName("");
       setPrice("");
@@ -147,6 +150,7 @@ export default function Home() {
             <option value="M">Medium</option>
             <option value="L">Large</option>
             <option value="XL">Extra Large</option>
+            <option value="XXL">Double XL</option>
           </select>
         </div>
 
@@ -155,15 +159,6 @@ export default function Home() {
           onClientUploadComplete={handleUploadComplete}
           onUploadError={handleUploadError}
         />
-
-        <div className="mt-4">
-          <h3 className="text-gray-700 font-bold mb-2">Uploaded Images:</h3>
-          <div className="flex flex-wrap gap-4">
-            {imageUrls.map((url, index) => (
-              <img key={index} src={url} alt={`Uploaded ${index + 1}`} className="w-24 h-24 object-cover rounded" />
-            ))}
-          </div>
-        </div>
 
         <button
           onClick={handleSubmit}
