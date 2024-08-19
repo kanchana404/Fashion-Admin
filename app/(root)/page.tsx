@@ -150,7 +150,7 @@ export default function Home() {
             <option value="M">Medium</option>
             <option value="L">Large</option>
             <option value="XL">Extra Large</option>
-            <option value="XXL">Double XL</option>
+            
           </select>
         </div>
 
