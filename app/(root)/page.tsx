@@ -75,7 +75,7 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-10 bg-gray-100">
+    <main className="flex min-h-screen flex-col items-center justify-center p-10 bg-black">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
         <h1 className="text-2xl font-bold mb-6">Create a product</h1>
 
