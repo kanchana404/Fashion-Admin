@@ -349,8 +349,8 @@ const Navbar = () => {
           </Button>
         </Link>
 
-        <div className="mt-32">
-          <footer className="flex w-full mb-12">
+        <div className="mt-24 w-full">
+          <footer className="flex w-full  mb-12">
             <UserButton />
             <span>
               <p className="text-black ml-5">Account Management</p>
