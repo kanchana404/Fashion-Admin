@@ -107,7 +107,7 @@ const Navbar = () => {
               <div className="w-full text-start mt-10">
                 <p className="text-gray-500 text-xl ml-3">Settings</p>
               </div>
-              <Link href="/setting">
+              <Link href="/messages">
                 <Button className="mt-6 w-full bg-gray-800 hover:bg-gray-900">
                   <span className="flex items-center justify-center">
                     <svg
@@ -283,7 +283,7 @@ const Navbar = () => {
           <p className="text-gray-500 text-xl ml-3">Settings</p>
         </div>
         
-        <Link href="/setting">
+        <Link href="/messages">
           <Button className="mt-6 w-full bg-white text-black border border-black hover:bg-black hover:text-white">
             <span className="flex items-center justify-center">
               <svg
