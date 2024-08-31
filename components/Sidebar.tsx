@@ -155,8 +155,11 @@ const Navbar = () => {
             </Button>
           </div>
 
-          <footer className="w-full ml-10 mb-16">
+          <footer className="flex w-full ml-10 mb-16">
             <UserButton />
+            <span>
+              <p className="text-white ml-5">Account Management</p>
+            </span>
           </footer>
         </div>
       </SignedIn>
